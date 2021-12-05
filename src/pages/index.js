@@ -24,15 +24,29 @@ export async function getStaticProps(ctx) {
   var whois = "LuciLua";
 
   const repositorios = await fetch(
-    `https://api.github.com/users/${whois}/repos`
+    `https://api.github.com/users/${whois}/repos`,
+    {
+      method: 'GET',
+      headers: {
+        "Authorization": `${process.env.API_KEY}`
+      }
+    }
+
   )
+
     .then((resp) => {
       if (resp.ok) return resp.json();
       throw new Error("Deu ruim!");
     })
     .then((resp) => resp);
 
-  const user = await fetch(`https://api.github.com/users/${whois}`)
+  const user = await fetch(`https://api.github.com/users/${whois}`, 
+  {
+    method: 'GET',
+    headers: {
+      "Authorization": `${process.env.API_KEY}`
+    }
+  })
     .then((resp) => {
       if (resp.ok) return resp.json();
       throw new Error("Deu ruim!");
@@ -45,6 +59,7 @@ export async function getStaticProps(ctx) {
 }
 
 const Home = (props) => {
+
   const { repositorios, user, whois } = props;
 
   const [isLiked, setLikeState] = useState(false);
@@ -150,11 +165,10 @@ const Home = (props) => {
         <ul className={styles.ul}>
           {repositorios.map((repo) => (
             <li className={styles.li} key={repo.id}>
-              <a href={`${"https://"}${repo.homepage}`}>{repo.name}</a>
+              <a href={`${repo.homepage}`}>{repo.name}</a>
             </li>
           ))}
         </ul>
-        <span>{isLiked ? 1 : 0}</span>
       </div>
     </>
   );
