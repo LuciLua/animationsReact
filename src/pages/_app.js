@@ -1,14 +1,14 @@
-import '../styles/global.scss'
-import { Header } from '../components/Header'
+import "../styles/global.scss"; 
 
-function App({ Component, pageProps }){
-    return (
-        <>
-            <Header/>
-                <Component {...pageProps}/>
-        
-        </>
-    )
+import { Header } from "../components/Header";
+
+function App({ Component, pageProps }) {
+  return (
+    <>
+      <Header />
+      <Component {...pageProps} />
+    </>
+  );
 }
 
-export default App
+export default App;

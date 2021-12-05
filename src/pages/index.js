@@ -1,6 +1,5 @@
 import { React, useState } from "react";
 import Lottie from "react-lottie";
-// import styled from "styled-components";
 
 import animationData from "../animates/heart.json";
 import animationData2 from "../animates/lamp.json";
@@ -19,48 +18,36 @@ const ButtonWrapperLamp = styled.button`
   justify-content: center;
 `;
 
-
 export async function getStaticProps(ctx) {
   var whois = "LuciLua";
 
   const repositorios = await fetch(
     `https://api.github.com/users/${whois}/repos`,
     {
-      method: 'GET',
+      method: "GET",
       headers: {
-        "Authorization": `${process.env.API_KEY}`
-      }
+        Authorization: `${process.env.API_KEY}`,
+      },
     }
-
   )
-
     .then((resp) => {
       if (resp.ok) return resp.json();
       throw new Error("Deu ruim!");
     })
     .then((resp) => resp);
 
-  const user = await fetch(`https://api.github.com/users/${whois}`, 
-  {
-    method: 'GET',
-    headers: {
-      "Authorization": `${process.env.API_KEY}`
-    }
-  })
-    .then((resp) => {
-      if (resp.ok) return resp.json();
-      throw new Error("Deu ruim!");
-    })
-    .then((resp) => resp);
+  // const repositorios = [
+  //   {id: '1', homepage: '/', name: 'Ola'},
+  //   {id: '2', homepage: '/', name: 'Luci'}
+  // ]
 
   return {
-    props: { repositorios, user, whois },
+    props: { repositorios, whois },
   };
 }
 
 const Home = (props) => {
-
-  const { repositorios, user, whois } = props;
+  const { repositorios, whois } = props;
 
   const [isLiked, setLikeState] = useState(false);
   const [animationState, setAnimationState] = useState({
@@ -96,8 +83,7 @@ const Home = (props) => {
 
   return (
     <>
-      <img height={300} src={user.avatar_url} className={styles.imgUser} />
-      <div className={styles.line}></div>
+      {/* <div className={styles.line}></div> */}
       <div className={styles.repositories}>
         <div className={styles.headRepos}>
           <h1>Repositories</h1>
@@ -105,7 +91,7 @@ const Home = (props) => {
             className={styles.btnLike}
             id={styles.btn}
             onClick={() => {
-              document.querySelector('#btn')
+              document.querySelector("#btn");
               const reverseAnimation = -1;
               const normalAnimation = 1;
 
