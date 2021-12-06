@@ -1,0 +1,1 @@
+var whois = 'Luci Lua'

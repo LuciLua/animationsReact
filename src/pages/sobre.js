@@ -4,8 +4,8 @@ import Image from "next/image";
 import styles from "../styles/sobre.module.scss";
 
 export async function getStaticProps(ctx) {
-  var whois = `LuciLua`;
 
+  var whois = `LuciLua`;
   const usuario = await fetch(`https://api.github.com/users/${whois}`, {
     method: "GET",
     headers: {
@@ -17,6 +17,8 @@ export async function getStaticProps(ctx) {
       throw new Error("Deu ruim!");
     })
     .then((resp) => resp);
+
+  // const usuario = {avatar_url: '/logo.jpg'}
 
   return {
     props: { usuario },
@@ -35,7 +37,11 @@ const Sobre = (props) => {
               className={styles.profilePhoto}
               src={usuario.avatar_url}
               alt="Picture of the author"
-              layout="fill"
+              layout="responsive"
+              width="200"
+              height="200"
+              priority='true'
+              
             />
           </div>
           <div className={styles.boxAbout}>

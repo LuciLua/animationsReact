@@ -12,11 +12,10 @@
   .navAndLogo {
     position: relative;
 
-
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     height: 100%;
     width: fit-content;
 
@@ -28,12 +27,15 @@
       justify-content: center;
       align-items: center;
 
+      & > a {
+        text-decoration: none;
 
-      & > a li {
-        color: #fff;
-        margin: 0 10px;
+        li {
+          color: #fff;
+          margin: 0 10px;
 
-        font-family: 'Lexend', sans-serif;
+          font-family: "Lexend", sans-serif;
+        }
       }
     }
 
@@ -46,20 +48,150 @@
     }
   }
 
-  .foto {
-    width: 50px;
-    height: 50px;
-
-    border-radius: 60%;
-
+  .right {
+    width: fit-content;
     margin-left: auto;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    .menuIcon {
+      width: 40px;
+      height: 40px;
+
+      color: #fff;
+
+      margin-right: 25px;
+      display: none;
+    }
+
+    .fotoNome {
+
+      display: flex;
+      align-items: center;
+
+      
+      .foto {
+        width: 50px;
+        height: 50px;
+
+        border-radius: 60%;
+      }
+
+      .nome {
+        margin-right: 25px;
+        span {
+          color: #fff;
+          font-family: "Lexend", sans-serif;
+        }
+      }
+    }
+  }
 }
 
-.nome {
-    margin-left: 25px;
-    span {
-      color: #fff;
-      font-family: 'Lexend', sans-serif;
+@media only screen and (max-width: 700px) {
+  .headerContainer {
+    .navAndLogo {
+      .nav {
+        display: none;
+      }
+      .logo {
+        display: none;
+      }
+    }
+    .right {
+      .menuIcon {
+        display: flex;
+        margin: 0;
+
+        position: absolute;
+        left: 30px;
+
+        cursor: pointer;
+      }
+    }
+  }
+
+  .headerContainer.active {
+    height: 100vh;
+    width: 100%;
+
+    padding: 0;
+    margin: 0;
+
+    position: relative;
+
+    overflow: hidden;
+    flex-direction: column-reverse;
+
+    .navAndLogo {
+      justify-content: start;
+      align-items: flex-start;
+      background-color: rgba(80, 80, 80, 0.118);
+      width: 100%;
+
+      .logo {
+        display: none;
+      }
+      .nav {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+
+        a {
+          height: 100%;
+          width: 100%;
+
+          border-bottom: rgba(63, 57, 72, 0.604) 1px solid;
+
+          display: flex;
+          align-items: center;
+
+          justify-content: center;
+
+          &:last-child {
+            border: none;
+          }
+
+          &:hover {
+            background-color: #010409;
+          }
+
+          a > li {
+            justify-content: space-between;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    .right {
+      position: relative;
+
+      width: 100%;
+      height: 90px;
+
+      margin: 0;
+
+      top: 0;
+
+      .menuIcon {
+        display: flex;
+        position: absolute;
+
+        right: 0;
+      }
+
+      .fotoNome {
+        position: absolute;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 10px;
+      }
     }
   }
 }
