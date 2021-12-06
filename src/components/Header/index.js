@@ -32,22 +32,22 @@ export function Header(props) {
 
         <ul className={styles.nav}>
           <Link href="/sobre">
-            <a>
+            <a onClick={toggleMenu}>
               <li>Sobre</li>
             </a>
           </Link>
           <Link href="/">
-            <a>
+            <a onClick={toggleMenu}>
               <li>Repositorios</li>
             </a>
           </Link>
           <Link href="/animate">
-            <a>
+            <a onClick={toggleMenu}>
               <li>Animate</li>
             </a>
           </Link>
           <Link href="https://luci-lua.tk">
-            <a>
+            <a onClick={toggleMenu}>
               <li>Portfólio</li>
             </a>
           </Link>
